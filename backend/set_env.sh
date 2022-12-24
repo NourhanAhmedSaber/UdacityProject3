@@ -8,4 +8,4 @@ export TYPEORM_HOST=udapeople-db.ccxknef7s6nz.us-east-1.rds.amazonaws.com
 export TYPEORM_PORT=5432
 export TYPEORM_USERNAME=postgres
 export TYPEORM_PASSWORD=mypassword5794
-export TYPEORM_DATABASE=udapeople-db
+export TYPEORM_DATABASE=glee
