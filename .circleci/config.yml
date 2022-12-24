@@ -34,42 +34,42 @@ commands:
     #           sudo npm install --global n
     #           sudo n 13.8.0
           
-  destroy-environment:
-    description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
-    parameters:
-      Workflow_ID:
-        type: string
-        default: ${CIRCLE_WORKFLOW_ID:0:7}
-    steps:
-      - run:
-          name: Destroy environments
-          when: on_fail
-          command: |
-            aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
-            aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
-            aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
+  # destroy-environment:
+  #   description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
+  #   parameters:
+  #     Workflow_ID:
+  #       type: string
+  #       default: ${CIRCLE_WORKFLOW_ID:0:7}
+  #   steps:
+  #     - run:
+  #         name: Destroy environments
+  #         when: on_fail
+  #         command: |
+  #           aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
+  #           aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
+  #           aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
 
 
-  revert-migrations:
-    description: Revert the last migration, if any were executed during the current workflow
-    parameters:
-      Workflow_ID:
-        type: string
-        default: ${CIRCLE_WORKFLOW_ID:0:7}
-    steps:
-      - run:
-          name: Revert migrations
-          when: on_fail
-          command: |
-            SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
+  # revert-migrations:
+  #   description: Revert the last migration, if any were executed during the current workflow
+  #   parameters:
+  #     Workflow_ID:
+  #       type: string
+  #       default: ${CIRCLE_WORKFLOW_ID:0:7}
+  #   steps:
+  #     - run:
+  #         name: Revert migrations
+  #         when: on_fail
+  #         command: |
+  #           SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
 
-            # Logic for reverting the database state
-            if (( $SUCCESS == 1 ));
-            then
-              cd ~/project/backend
-              npm install
-              npm run migration:revert
-            fi
+  #           # Logic for reverting the database state
+  #           if (( $SUCCESS == 1 ));
+  #           then
+  #             cd ~/project/backend
+  #             npm install
+  #             npm run migration:revert
+  #           fi
             
 jobs:
   build-frontend:
@@ -354,8 +354,8 @@ jobs:
             else 
               return 1; 
             fi
-      - destroy-environment
-      - revert-migrations      
+      # - destroy-environment
+      # - revert-migrations      
 #       # Here's where you will add some code to rollback on failure  
 
 #   cloudfront-update:
