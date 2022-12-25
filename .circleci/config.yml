@@ -1,15 +1,15 @@
 version: 2.1
 
-#commands:
-#   install_awscli:
-#     description: Install AWS CLI v2
-#     steps:
-#       - run:
-#         name: Install AWS CLI v2
-#         command: |
-#           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-#           unzip awscliv2.zip
-#           sudo ./aws/install
+commands:
+    install_awscli:
+      description: Install AWS CLI v2
+      steps:
+        - run:
+            name: Install AWS CLI v2
+            command: |
+              curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+              unzip awscliv2.zip
+              sudo ./aws/install
 
 #   install_ansible:
 #     description: Install Ansible
@@ -22,17 +22,17 @@ version: 2.1
 #           sudo add-apt-repository --yes --update ppa:ansible/ansible
 #           sudo apt install ansible -y
 
-    # install_nodejs:
-    #   description: Install Node.js 13
-    #   steps:
-    #     - run:
-    #         name: Install Node.js 13
-    #         command: |
-    #           curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash
-    #           sudo apt install -y Node.js
+    install_nodejs:
+      description: Install Node.js 13
+      steps:
+        - run:
+            name: Install Node.js 13
+            command: |
+              curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash
+              sudo apt install -y Node.js
         
-    #           sudo npm install --global n
-    #           sudo n 13.8.0
+              sudo npm install --global n
+              sudo n 13.8.0
           
   # destroy-environment:
   #   description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
@@ -365,24 +365,26 @@ jobs:
 
   cloudfront-update:
     docker:
-      - image: amazon/aws-cli
+      - image: cimg/base:stable
     steps:
       - checkout
+      - install_awscli
+      - install_nodejs
       - run:
           name: Save Old Workflow ID to kvdb.io
           command: |
             export OLD_WORKFLOW_ID=$(aws cloudformation \
-                      list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
-                      --no-paginate --output text)
+            list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
+            --no-paginate --output text)
             echo "Old Wokflow ID: $OLD_WORKFLOW_ID"
-            curl -k https://kvdb.io/${KVDB_BUCKET}/old_workflow_id -d "${OLD_WORKFLOW_ID}"
+            curl https://kvdb.io/${KVDB_BUCKET}/old_workflow_id -d "${OLD_WORKFLOW_ID}"
       - run:
           name: Update cloudfront distribution
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/cloudfront.yml \
               --stack-name InitialStack \
-              --parameter-overrides WorkflowID=404772078340
+              --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID:0:7}"
               
       # - destroy-environment
       # - revert-migrations  
