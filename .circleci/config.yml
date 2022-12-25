@@ -323,6 +323,7 @@ jobs:
             ansible-playbook -i inventory.txt deploy-backend.yml
 #       # Here's where you will add some code to rollback on failure  
 
+
   smoke-test:
     docker:
       - image: python:3.9.1-alpine3.12 
