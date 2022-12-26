@@ -20,9 +20,10 @@ In this project, will prove the mastery of the following learning objectives:
 
 The CI/CD benefits proposal contains essential benefits of CI/CD, and describes the business context that will benefit from the automation tools. Explanation should include benefits that translate to revenue and cost for the business.
 
-Section 1: Selling CI/CD to your Team/Organization  Done and submitted.
+### Section 1: Selling CI/CD to your Team/Organization  
+- Done and submitted.
 
-Section 2: Deploying Working, Trustworthy Software  Done and submitted.
+### Section 2: Deploying Working, Trustworthy Software  Done and submitted.
 
 - A public git repository with your project code. [URL01]
 - Evidence of code-based CI/CD configuration in the form of yaml files in your git repository.
@@ -45,8 +46,8 @@ Section 2: Deploying Working, Trustworthy Software  Done and submitted.
 - Evidence of healthy back-end application. [URL04_SCREENSHOT]
 
 
-Section 3: Turn Errors into Sirens
-I am currently working on this section with using the Prometheus server, and will submit it once done and completed successfully to be reviewd.
+### Section 3: Turn Errors into Sirens
+- I am currently working on this section with using the Prometheus server, and will submit it once done and completed successfully to be reviewd.
 
 
 
