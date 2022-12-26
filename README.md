@@ -23,7 +23,8 @@ The CI/CD benefits proposal contains essential benefits of CI/CD, and describes 
 ### Section 1: Selling CI/CD to your Team/Organization  
 - Done and submitted.
 
-### Section 2: Deploying Working, Trustworthy Software  Done and submitted.
+### Section 2: Deploying Working, Trustworthy Software  
+- Done and submitted.
 
 - A public git repository with your project code. [URL01]
 - Evidence of code-based CI/CD configuration in the form of yaml files in your git repository.
