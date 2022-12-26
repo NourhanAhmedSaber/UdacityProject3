@@ -2,14 +2,14 @@
 	https://github.com/NourhanAhmedSaber/UdacityProject3.git
 
 2. Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02]
-	http://udapeople-965ad45.s3-website-us-east-1.amazonaws.com
+	http://udapeople-ba7707e.s3-website-us-east-1.amazonaws.com
 
 3. Deployed and functioning front-end application in CloudFront. [URL03_SCREENSHOT]
 	https://d2739elxsyzwr5.cloudfront.net/#/employees
 	
-
 4. The evidence of a healthy backend application. The backend endpoint status should show a healthy response. [URL04_SCREENSHOT]
-	curl http://3.93.145.206:3030/api/status
+	curl http://35.170.182.94:3030/api/status
 	{"status":"ok","environment":"production"}
 
 5. Prometheus server showing UP state. [URL05_SCREENSHOT]
+
