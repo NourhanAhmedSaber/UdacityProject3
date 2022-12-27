@@ -326,14 +326,18 @@ jobs:
 
   smoke-test:
     docker:
-      - image: cimg/base:stable
+      - image: amazon/aws-cli
     steps:
       - checkout
-      - install_awscli
-      - install_nodejs
-      - install_ansible
+      # - install_awscli
+      # - install_nodejs
+      # - install_ansible
       - restore_cache:
           keys: [backend-deps]
+      - run:
+          name: "Install curl"
+          command: |
+            yum install -y curl
       # - run:
       #     name: Install dependencies
       #     command: |
@@ -364,8 +368,8 @@ jobs:
             else 
               return 1; 
             fi
-      # - destroy-environment
-      # - revert-migrations      
+      - destroy-environment
+      - revert-migrations      
 #       # Here's where you will add some code to rollback on failure  
 
 
