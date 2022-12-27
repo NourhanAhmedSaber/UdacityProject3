@@ -326,7 +326,7 @@ jobs:
 
   smoke-test:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.9.1-alpine3.12
     steps:
       - checkout
       # - install_awscli
@@ -334,14 +334,14 @@ jobs:
       # - install_ansible
       - restore_cache:
           keys: [backend-deps]
-      - run:
-          name: "Install curl"
-          command: |
-            yum install -y curl
       # - run:
-      #     name: Install dependencies
+      #     name: "Install curl"
       #     command: |
-      #       apk add --update --no-cache nodejs curl npm ansible aws-cli
+      #       yum install -y curl
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update --no-cache nodejs curl npm ansible aws-cli
       - run:
           name: Backend smoke test.
           command: |
