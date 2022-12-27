@@ -59,7 +59,7 @@ commands:
     steps:
       - run:
           name: Revert migrations
-          #when: on_fail
+          when: on_fail
           command: |
               cd ~/project/backend
               npm install
@@ -330,15 +330,15 @@ jobs:
 
   smoke-test:
     docker:
-      - image: cimg/base:stable 
+      - image: python:3.9.1-alpine3.12 
     steps:
       - checkout
-      - install_awscli
-      - install_nodejs
-      # - run:
-      #     name: Install dependencies
-      #     command: |
-      #       apk add --update --no-cache nodejs curl npm ansible aws-cli
+      # - install_awscli
+      # - install_nodejs
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update --no-cache nodejs curl npm ansible aws-cli
       - run:
           name: Backend smoke test.
           command: |
