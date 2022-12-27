@@ -59,17 +59,17 @@ commands:
     steps:
       - run:
           name: Revert migrations
-          when: on_fail
+          #when: on_fail
           command: |
-            SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
+            # SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
 
-            # Logic for reverting the database state
-            if (( $SUCCESS == 1 ));
-            then
+            # # Logic for reverting the database state
+            # if (( $SUCCESS == 1 ));
+            # then
               cd ~/project/backend
               npm install
               npm run migration:revert
-            fi
+            #fi
             
 jobs:
   build-frontend:
@@ -254,6 +254,7 @@ jobs:
           command: |
             cd backend
             npm install
+            npm run premigrations
             npm run migrations
       #       echo "migrations_dump.txt"
       #       cat migrations_dump.txt
