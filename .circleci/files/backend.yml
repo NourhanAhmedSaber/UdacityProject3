@@ -42,9 +42,9 @@ Resources:
         # - key: Project
         #   Value: Udapeople
         
-  # InstanceEIP:
-  #   Type: AWS::EC2::EIP
-  #   Properties:
-  #     Domain: vpc
-  #     InstanceId: !Ref EC2Instance
+  InstanceEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      InstanceId: !Ref EC2Instance
 
