@@ -9,4 +9,6 @@
 {"status":"ok","environment":"production"}
 
 - Prometheus server showing UP state. [URL05_SCREENSHOT]
+	http://3.92.201.145:9090/targets
+	http://ec2-3-92-201-145.compute-1.amazonaws.com:9090/
 
