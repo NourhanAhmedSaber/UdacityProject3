@@ -12,3 +12,6 @@
 	http://3.92.201.145:9090/targets
 	http://ec2-3-92-201-145.compute-1.amazonaws.com:9090/
 
+	http://34.238.121.111:9090/targets
+	http://ec2-34-238-121-111.compute-1.amazonaws.com:9090/
+
